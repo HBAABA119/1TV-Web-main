@@ -1,0 +1,248 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to pure black/white Voidesports aesthetic */
+  --background: oklch(0.05 0 0); /* Pure black */
+  --foreground: oklch(0.98 0 0); /* Pure white */
+  --card: oklch(0.08 0 0); /* Slightly lighter black */
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.05 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.98 0 0); /* White primary */
+  --primary-foreground: oklch(0.05 0 0); /* Black text on white */
+  --secondary: oklch(0.15 0 0); /* Dark gray */
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.12 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.15 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.2 0 0); /* Subtle dark border */
+  --input: oklch(0.1 0 0);
+  --ring: oklch(0.4 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.375rem; /* Smaller radius for cleaner look */
+  --sidebar: oklch(0.05 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.98 0 0);
+  --sidebar-primary-foreground: oklch(0.05 0 0);
+  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.2 0 0);
+  --sidebar-ring: oklch(0.4 0 0);
+}
+
+.dark {
+  /* Dark mode uses same values as root for consistent black theme */
+  --background: oklch(0.05 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.08 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.05 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.98 0 0);
+  --primary-foreground: oklch(0.05 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.12 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.15 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.2 0 0);
+  --input: oklch(0.1 0 0);
+  --ring: oklch(0.4 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.05 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.98 0 0);
+  --sidebar-primary-foreground: oklch(0.05 0 0);
+  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.2 0 0);
+  --sidebar-ring: oklch(0.4 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    /* Pure black background with white text for Voidesports aesthetic */
+    @apply bg-black text-white font-sans antialiased;
+  }
+
+  /* Added esports-style typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-wide uppercase;
+  }
+
+  h1 {
+    @apply text-4xl md:text-6xl;
+  }
+
+  h2 {
+    @apply text-2xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+/* Updated styles for Voidesports aesthetic */
+.hero-gradient {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+}
+
+.btn-primary {
+  @apply inline-block bg-white text-black px-8 py-4 border-2 border-white rounded font-bold text-sm uppercase tracking-wider no-underline cursor-pointer transition-all duration-300 ease-in-out hover:bg-transparent hover:text-white;
+}
+
+.btn-secondary {
+  @apply inline-block bg-transparent text-white px-8 py-4 border-2 border-white rounded font-bold text-sm uppercase tracking-wider no-underline cursor-pointer transition-all duration-300 ease-in-out hover:bg-white hover:text-black;
+}
+
+.social-icon {
+  @apply text-white text-2xl transition-all duration-300 ease-in-out hover:text-gray-400 hover:scale-110;
+}
+
+.product-card {
+  @apply bg-gray-900 border border-gray-800 p-6 rounded transition-all duration-300 hover:border-white hover:shadow-lg hover:shadow-white/10;
+}
+
+.product-card img {
+  @apply w-full h-48 object-cover rounded;
+}
+
+.add-to-cart-btn {
+  @apply bg-white text-black px-6 py-3 border-none rounded font-bold text-sm uppercase tracking-wider cursor-pointer transition-all duration-300 hover:bg-gray-200 disabled:opacity-50;
+}
+
+/* Added loading spinner styles matching Voidesports */
+.loading-spinner {
+  @apply w-8 h-8 border-2 border-gray-600 border-t-white rounded-full animate-spin;
+}
+
+/* Enhanced navigation styles */
+.nav-link {
+  @apply text-white font-medium uppercase tracking-wider text-sm transition-all duration-300 hover:text-gray-400;
+}
+
+.nav-link.active {
+  @apply text-white border-b-2 border-white pb-1;
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .nav-links {
+    @apply flex-col gap-4;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  .social-icons {
+    @apply gap-4;
+  }
+}
+
+/* Enhanced focus states for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus,
+.add-to-cart-btn:focus,
+input:focus,
+button:focus {
+  @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-black;
+}
+
+/* Cart icon animation */
+.cart-icon-badge {
+  @apply animate-pulse bg-white text-black;
+}
+
+/* Added esports-style glitch effect for headers */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-effect:hover {
+  animation: glitch 0.3s ease-in-out;
+}
