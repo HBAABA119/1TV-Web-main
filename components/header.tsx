@@ -3,15 +3,16 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import CartIcon from "./cart-icon"
+import { useState } from "react"
 
 export default function Header() {
   const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const isActive = (path: string) => pathname === path
 
   return (
-    <header className="bg-black border-b border-gray-900 py-6">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur border-b border-gray-900 py-4">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between">
           <div className="logo">
@@ -28,68 +29,56 @@ export default function Header() {
 
           <nav className="hidden md:block">
             <ul className="flex items-center gap-8 list-none p-0 m-0">
-              <li>
-                <Link href="/" className={`nav-link ${isActive("/") ? "active" : ""}`}>
-                  HOME
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop" className={`nav-link ${isActive("/shop") ? "active" : ""}`}>
-                  SHOP
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className={`nav-link ${isActive("/about") ? "active" : ""}`}>
-                  ABOUT
-                </Link>
-              </li>
-              <li>
-                <Link href="/team" className={`nav-link ${isActive("/team") ? "active" : ""}`}>
-                  TEAM
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className={`nav-link ${isActive("/contact") ? "active" : ""}`}>
-                  CONTACT
-                </Link>
-              </li>
+              <li><Link href="/" className={`nav-link ${isActive("/") ? "active" : ""}`}>HOME</Link></li>
+              <li><Link href="/teams" className={`nav-link ${isActive("/teams") ? "active" : ""}`}>TEAMS</Link></li>
+              <li><Link href="/live-stream" className={`nav-link ${isActive("/live-stream") ? "active" : ""}`}>LIVE STREAM</Link></li>
+              <li><Link href="/news" className={`nav-link ${isActive("/news") ? "active" : ""}`}>NEWS</Link></li>
+              <li><Link href="/placements" className={`nav-link ${isActive("/placements") ? "active" : ""}`}>PLACEMENTS</Link></li>
+              <li><Link href="/schedule" className={`nav-link ${isActive("/schedule") ? "active" : ""}`}>SCHEDULE</Link></li>
+              <li><Link href="/shop" className={`nav-link ${isActive("/shop") ? "active" : ""}`}>SHOP</Link></li>
+              <li><Link href="/about" className={`nav-link ${isActive("/about") ? "active" : ""}`}>ABOUT</Link></li>
+              <li><Link href="/contact" className={`nav-link ${isActive("/contact") ? "active" : ""}`}>CONTACT US</Link></li>
             </ul>
           </nav>
 
-          <div className="flex items-center">
-            <CartIcon />
+          <div className="flex items-center gap-3">
+            {/* Mobile menu button */}
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="md:hidden inline-flex items-center justify-center w-10 h-10 border border-gray-800 rounded hover:border-white transition-colors"
+            >
+              <span className="sr-only">Toggle navigation</span>
+              <span
+                className={`block w-5 h-0.5 bg-white transition-transform ${menuOpen ? "translate-y-1.5 rotate-45" : ""}`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-white my-1 transition-opacity ${menuOpen ? "opacity-0" : "opacity-100"}`}
+              />
+              <span
+                className={`block w-5 h-0.5 bg-white transition-transform ${menuOpen ? "-translate-y-1.5 -rotate-45" : ""}`}
+              />
+            </button>
           </div>
         </div>
 
-        <nav className="md:hidden mt-6 pt-6 border-t border-gray-900">
-          <ul className="flex flex-wrap justify-center gap-6 list-none p-0 m-0">
-            <li>
-              <Link href="/" className={`nav-link text-sm ${isActive("/") ? "active" : ""}`}>
-                HOME
-              </Link>
-            </li>
-            <li>
-              <Link href="/shop" className={`nav-link text-sm ${isActive("/shop") ? "active" : ""}`}>
-                SHOP
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className={`nav-link text-sm ${isActive("/about") ? "active" : ""}`}>
-                ABOUT
-              </Link>
-            </li>
-            <li>
-              <Link href="/team" className={`nav-link text-sm ${isActive("/team") ? "active" : ""}`}>
-                TEAM
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className={`nav-link text-sm ${isActive("/contact") ? "active" : ""}`}>
-                CONTACT
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        {menuOpen && (
+          <nav className="md:hidden mt-4 pt-4 border-t border-gray-900">
+            <ul className="flex flex-col items-center gap-4 list-none p-0 m-0">
+              <li><Link href="/" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/") ? "active" : ""}`}>HOME</Link></li>
+              <li><Link href="/teams" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/teams") ? "active" : ""}`}>TEAMS</Link></li>
+              <li><Link href="/live-stream" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/live-stream") ? "active" : ""}`}>LIVE STREAM</Link></li>
+              <li><Link href="/news" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/news") ? "active" : ""}`}>NEWS</Link></li>
+              <li><Link href="/placements" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/placements") ? "active" : ""}`}>PLACEMENTS</Link></li>
+              <li><Link href="/schedule" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/schedule") ? "active" : ""}`}>SCHEDULE</Link></li>
+              <li><Link href="/shop" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/shop") ? "active" : ""}`}>SHOP</Link></li>
+              <li><Link href="/about" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/about") ? "active" : ""}`}>ABOUT</Link></li>
+              <li><Link href="/contact" onClick={() => setMenuOpen(false)} className={`nav-link text-sm ${isActive("/contact") ? "active" : ""}`}>CONTACT US</Link></li>
+            </ul>
+          </nav>
+        )}
       </div>
     </header>
   )

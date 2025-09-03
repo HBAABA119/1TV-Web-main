@@ -40,7 +40,7 @@ export default function ContactPage() {
 
       <section className="py-20 bg-black">
         <div className="max-w-2xl mx-auto px-6">
-          <div className="bg-gray-900 border border-gray-800 rounded p-8">
+          <div className="card-soft p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-bold text-white uppercase tracking-wide mb-3">EMAIL ADDRESS</label>
@@ -52,7 +52,7 @@ export default function ContactPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isSubmitting}
-                  className="w-full p-4 bg-black border border-gray-700 rounded text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors uppercase tracking-wide"
+                  className="input-soft uppercase tracking-wide"
                 />
               </div>
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
             </form>
 
             {message && (
-              <div className="mt-6 p-4 bg-black border border-gray-700 rounded text-center">
+              <div className="mt-6 p-4 card-soft text-center">
                 <p
                   className={`font-bold text-sm uppercase tracking-wide ${
                     message.includes("ERROR") ? "text-red-400" : "text-green-400"
@@ -74,7 +74,7 @@ export default function ContactPage() {
             )}
           </div>
 
-          <div className="text-center mt-12 p-6 bg-gray-900 border border-gray-800 rounded">
+          <div className="text-center mt-12 p-6 card-soft">
             <p className="text-gray-400 text-sm uppercase tracking-wide mb-2">BUSINESS INQUIRIES</p>
             <p className="text-white font-bold">BUSINESS.ONETRUEVISION@GMAIL.COM</p>
           </div>

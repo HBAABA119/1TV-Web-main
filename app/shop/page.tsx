@@ -1,5 +1,5 @@
 import PageLayout from "@/components/page-layout"
-import AddToCartButton from "@/components/add-to-cart-button"
+// Cart functionality removed per request
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -47,34 +47,72 @@ const products = [
   },
 ]
 
+const tweaks = [
+  { id: "shotgun-pack", name: "SHOTGUN PACK", href: "https://payhip.com/b/4sYeR" },
+  { id: "bloom-reducer", name: "BLOOM REDUCER", href: "https://payhip.com/b/bjBa1" },
+  { id: "controller-zero-delay", name: "CONTROLLER ZERO DELAY", href: "https://payhip.com/b/GHjaE" },
+  { id: "keyboard-zero-delay", name: "KEYBOARD ZERO DELAY", href: "https://payhip.com/b/tfTgw" },
+  { id: "zero-delay", name: "ZERO DELAY", href: "https://payhip.com/b/zQR1c" },
+  { id: "ping-optimizer", name: "PING OPTIMIZER", href: "https://payhip.com/b/iOfS7" },
+  { id: "full-optimization", name: "FULL OPTIMIZATION", href: "https://payhip.com/b/aUYTL" },
+  { id: "premium-full-optimization", name: "PREMIUM FULL OPTIMIZATION", href: "https://payhip.com/b/3F9lg" },
+  { id: "zinq-optimization", name: "ZINQ'S OPTIMIZATION", href: "https://payhip.com/b/ZRmiI" },
+  { id: "fps-boost", name: "FPS BOOST", href: "https://payhip.com/b/fkRpu" },
+  { id: "zero-delay-plus", name: "ZERO DELAY PLUS", href: "https://payhip.com/b/601hB" },
+]
+
 export default function ShopPage() {
   return (
     <PageLayout>
       <section className="py-20 bg-black">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-wider glitch-effect">SHOP</h1>
-          <div className="w-24 h-0.5 bg-white mx-auto mb-12"></div>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">OFFICIAL ONE TRUE VISION MERCHANDISE</p>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="section-heading text-left mb-8">
+            <div className="section-eyebrow">Shop</div>
+            <h2 className="text-white">SHOP</h2>
+            <div className="divider-line" />
+          </div>
         </div>
       </section>
 
-      <section className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-6 bg-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-              <div key={product.id} className="product-card group">
-                <div className="w-full h-64 bg-gray-900 border border-gray-800 rounded mb-6 flex items-center justify-center group-hover:border-white transition-colors duration-300">
-                  <span className="text-gray-500 text-sm uppercase tracking-wide">PRODUCT IMAGE</span>
+              <div key={product.id} className="card-soft p-4 group">
+                <div className="w-full aspect-[4/3] rounded-xl overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center mb-4">
+                  <div className="skeleton w-full h-full" />
                 </div>
-                <div className="space-y-4">
-                  <h2 className="text-xl font-bold text-white uppercase tracking-wide">{product.name}</h2>
-                  <p className="text-gray-400 text-sm">{product.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-white">{product.price}</span>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-white font-semibold tracking-wide">{product.name}</h3>
+                    <p className="text-white/60 text-sm">{product.price}</p>
                   </div>
-                  <AddToCartButton product={product} className="w-full" />
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tweaks section */}
+      <section className="py-16 bg-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="section-heading text-left mb-8">
+            <div className="section-eyebrow">Tweaks</div>
+            <h2 className="text-white">TWEAKS</h2>
+            <div className="divider-line" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tweaks.map((item) => (
+              <a key={item.id} href={item.href} target="_blank" rel="noopener noreferrer" className="card-soft p-4 group hover:border-white transition-colors">
+                <div className="w-full aspect-[4/3] rounded-xl overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center mb-4">
+                  <div className="skeleton w-full h-full" />
+                </div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-semibold tracking-wide">{item.name}</h3>
+                  <span className="text-xs text-white/60">Payhip →</span>
+                </div>
+              </a>
             ))}
           </div>
         </div>

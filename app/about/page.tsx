@@ -57,11 +57,11 @@ export default function AboutPage() {
             <div className="flex justify-center">
               <div className="relative">
                 <Image
-                  src="/images/Placeholder.jpg"
-                  alt="One True Vision Team"
+                  src="/images/1TV_LOGO.png"
+                  alt="One True Vision (1TV) Logo"
                   width={400}
                   height={300}
-                  className="w-full max-w-[400px] h-auto rounded border border-gray-800"
+                  className="w-full max-w-[400px] h-auto rounded border border-gray-800 object-contain bg-black"
                 />
                 <div className="absolute inset-0 bg-black/20 rounded"></div>
               </div>

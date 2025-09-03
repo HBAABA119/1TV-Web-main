@@ -246,3 +246,132 @@ button:focus {
 .glitch-effect:hover {
   animation: glitch 0.3s ease-in-out;
 }
+
+/* --- Hero animations (CSS-only, no deps) --- */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 600ms ease-out both;
+}
+
+@keyframes dividerGrow {
+  0% {
+    transform: scaleX(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.divider-animate {
+  transform-origin: center;
+  animation: dividerGrow 900ms ease-out 120ms both;
+}
+
+/* --- Simple marquee band --- */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  @apply bg-black border-t border-b border-gray-900 overflow-hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee 18s linear infinite;
+}
+
+.marquee-item {
+  @apply text-xs md:text-sm tracking-widest uppercase text-white/80 px-6 py-3;
+}
+
+/* --- Counter reveal (CSS-only, faux count-up feel) --- */
+@keyframes wipeReveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.count-reveal {
+  animation: wipeReveal 900ms ease-out both;
+}
+
+.counter-value {
+  @apply text-4xl md:text-6xl font-extrabold tracking-wider text-white;
+}
+
+.counter-label {
+  @apply text-xs md:text-sm uppercase tracking-[0.2em] text-white/60;
+}
+
+.logo-dim {
+  @apply opacity-70 grayscale contrast-75 hover:opacity-100 hover:grayscale-0 transition;
+}
+
+/* --- Section patterns (VoidEsports-like) --- */
+.section-heading {
+  @apply text-center;
+}
+
+.section-eyebrow {
+  @apply text-[11px] md:text-xs uppercase tracking-[0.3em] text-white/50 mb-3;
+}
+
+.divider-line {
+  @apply w-24 h-px bg-white/80 mt-6;
+}
+
+/* CTA band: bold, minimal, high-contrast */
+.cta-band {
+  @apply bg-black border-t border-gray-900 py-16;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.03), rgba(255,255,255,0));
+}
+
+/* --- Skeleton placeholders --- */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 37%, rgba(255,255,255,0.06) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+/* --- Soft rounded cushion cards & inputs --- */
+.card-soft {
+  @apply bg-gray-900/70 border border-gray-800/80 rounded-2xl backdrop-blur-sm;
+  box-shadow: 0 10px 30px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.input-soft {
+  @apply w-full px-5 py-4 bg-black/70 border border-gray-700/80 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-white transition-colors;
+}
