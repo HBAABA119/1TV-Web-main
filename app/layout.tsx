@@ -9,6 +9,7 @@ import "./globals.css"
 import RouteLoader from "@/components/route-loader"
 import ParallaxProvider from "@/components/parallax-provider"
 import AnimateOnScroll from "@/components/animate-on-scroll"
+import PageTransition from "@/components/page-transition"
 
 export const metadata: Metadata = {
   title: "One True Vision | Elite E-Sports Organization",
@@ -32,7 +33,9 @@ export default function RootLayout({
         <CartProvider>
           <ParallaxProvider />
           <AnimateOnScroll />
-          <Suspense fallback={<RouteLoader />}>{children}</Suspense>
+          <Suspense fallback={<RouteLoader />}>
+            <PageTransition>{children}</PageTransition>
+          </Suspense>
         </CartProvider>
         <Analytics />
       </body>

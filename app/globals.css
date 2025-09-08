@@ -425,6 +425,25 @@ button:focus {
   color: rgba(255,255,255,0.7);
 }
 
+/* Subtle cube breathing and sparkle without altering markup */
+@keyframes cubeBreath {
+  0%, 100% { transform: translateZ(0) scale(1); }
+  50% { transform: translateZ(0) scale(1.03); }
+}
+.cube::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.65), rgba(255,255,255,0));
+  filter: blur(1px);
+  animation: cubeBreath 2200ms ease-in-out infinite;
+  pointer-events: none;
+}
+
 /* --- Custom Scrollbar (theme-matching, low contrast, low lag) --- */
 :root {
   --scrollbar-bg: #0a0a0a;
@@ -526,3 +545,56 @@ button:focus {
 
 /* Inputs get a steadier, lighter sheen */
 .input-soft::after { opacity: 0.04; }
+
+/* --- Global hover lift and media polish --- */
+.hover-lift {
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(255,255,255,0.08);
+}
+
+img, video, canvas {
+  transition: filter 240ms ease, transform 240ms ease, opacity 240ms ease;
+  will-change: transform, filter, opacity;
+}
+img:hover, video:hover, canvas:hover {
+  filter: contrast(105%) saturate(105%);
+}
+
+a {
+  transition: color 200ms ease, opacity 200ms ease, text-shadow 200ms ease;
+}
+a:hover {
+  opacity: 0.9;
+}
+
+/* --- Page transition animations --- */
+@keyframes pageEnter {
+  0% { opacity: 0; transform: translateY(12px) scale(0.995); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.page-transition-container {
+  will-change: opacity, transform;
+}
+
+.page-enter {
+  animation: pageEnter 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Reserve class for potential future exit if needed */
+.page-exit { opacity: 0; }
+
+/* --- Loader enhancement effects (CSS-only, no DOM changes) --- */
+.loader-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60vw 60vh at 50% 50%, rgba(255,255,255,0.06), rgba(0,0,0,0));
+  pointer-events: none;
+}
+
+.cube { filter: drop-shadow(0 8px 24px rgba(255,255,255,0.1)); }
+.cube__face { backdrop-filter: blur(1px); }
