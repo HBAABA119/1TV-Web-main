@@ -9,6 +9,10 @@ import "./globals.css"
 import RouteLoader from "@/components/route-loader"
 import ParallaxProvider from "@/components/parallax-provider"
 import AnimateOnScroll from "@/components/animate-on-scroll"
+import { ThemeProvider } from "@/components/theme-provider"
+import FuturisticBackground from "@/components/futuristic-background"
+import ScrollProgress from "@/components/scroll-progress"
+import CommandPalette from "@/components/command-palette"
 
 export const metadata: Metadata = {
   title: "One True Vision | Elite E-Sports Organization",
@@ -24,17 +28,24 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} bg-gray-900 text-white`}>
-        <CartProvider>
-          <ParallaxProvider />
-          <AnimateOnScroll />
-          <Suspense fallback={<RouteLoader />}>{children}</Suspense>
-        </CartProvider>
-        <Analytics />
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <FuturisticBackground />
+          <ScrollProgress />
+          <CartProvider>
+            <Suspense fallback={null}>
+              <ParallaxProvider />
+            </Suspense>
+            <AnimateOnScroll />
+            <Suspense fallback={<RouteLoader />}>{children}</Suspense>
+          </CartProvider>
+          <CommandPalette />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
+import ThemeToggle from "@/components/theme-toggle"
 
 export default function Header() {
   const pathname = usePathname()
@@ -42,6 +43,19 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Open command palette"
+              onClick={() => {
+                const event = new KeyboardEvent("keydown", { key: "k", ctrlKey: true })
+                window.dispatchEvent(event)
+              }}
+              className="hidden md:inline-flex items-center justify-center w-10 h-10 border border-gray-800 rounded hover:border-white transition-colors"
+              title="Command Palette (Ctrl+K)"
+            >
+              <span className="text-white">⌘</span>
+            </button>
+            <ThemeToggle />
             {/* Mobile menu button */}
             <button
               type="button"
