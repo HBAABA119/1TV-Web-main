@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import Header from "./header"
+import EnhancedHeader from "./enhanced-header"
 import Footer from "./footer"
 
 interface PageLayoutProps {
@@ -10,7 +10,7 @@ interface PageLayoutProps {
 export default function PageLayout({ children, className = "" }: PageLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <EnhancedHeader />
       <main className={`flex-1 pt-20 ${className}`}>{children}</main>
       <Footer />
     </div>
