@@ -375,3 +375,154 @@ button:focus {
 .input-soft {
   @apply w-full px-5 py-4 bg-black/70 border border-gray-700/80 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-white transition-colors;
 }
+
+/* --- Global page transition loader (3D cube) --- */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(80vw 80vh at 50% 50%, rgba(255,255,255,0.04), rgba(0,0,0,0.9));
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.cube {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  transform-style: preserve-3d;
+  animation: cube-rotate 2.2s linear infinite;
+}
+
+.cube__face {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 24px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.35);
+  border-radius: 8px;
+}
+
+.cube__face--front { transform: translateZ(28px); }
+.cube__face--back { transform: rotateY(180deg) translateZ(28px); }
+.cube__face--right { transform: rotateY(90deg) translateZ(28px); }
+.cube__face--left { transform: rotateY(-90deg) translateZ(28px); }
+.cube__face--top { transform: rotateX(90deg) translateZ(28px); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(28px); }
+
+@keyframes cube-rotate {
+  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  50% { transform: rotateX(180deg) rotateY(0deg) rotateZ(180deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+.loader-caption {
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+/* --- Custom Scrollbar (theme-matching, low contrast, low lag) --- */
+:root {
+  --scrollbar-bg: #0a0a0a;
+  --scrollbar-thumb: #ffffff;
+  --scrollbar-thumb-muted: rgba(255,255,255,0.55);
+}
+
+* {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--scrollbar-thumb-muted) var(--scrollbar-bg);
+}
+
+/* WebKit */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-muted);
+  border-radius: 8px;
+  border: 2px solid var(--scrollbar-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb);
+}
+
+/* --- Parallax helpers (CSS var driven) --- */
+:root { --parallax: 0; }
+
+.parallax {
+  will-change: transform;
+  transform: translateZ(0);
+}
+.parallax-depth-1 { transform: translateY(calc(var(--parallax) * -10px)); }
+.parallax-depth-2 { transform: translateY(calc(var(--parallax) * -20px)); }
+.parallax-depth-3 { transform: translateY(calc(var(--parallax) * -35px)); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cube { animation: none; }
+  .parallax,
+  .parallax-depth-1,
+  .parallax-depth-2,
+  .parallax-depth-3 { transform: none !important; }
+}
+
+/* --- Animate On Scroll (AOS) base styles --- */
+.aos-item {
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  transition: opacity 500ms ease, transform 500ms ease;
+  will-change: opacity, transform;
+}
+.aos-item.aos-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .aos-item { opacity: 1; transform: none; transition: none; }
+}
+
+/* --- Glossy sheen effect for UI elements (subtle, theme-matching) --- */
+.card-soft,
+.product-card,
+.btn-primary,
+.btn-secondary,
+.input-soft {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-soft::after,
+.product-card::after,
+.btn-primary::after,
+.btn-secondary::after,
+.input-soft::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.02) 35%, rgba(255,255,255,0) 60%);
+  transform: rotate(12deg);
+  opacity: 0.06;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.card-soft:hover::after,
+.product-card:hover::after,
+.btn-primary:hover::after,
+.btn-secondary:hover::after {
+  opacity: 0.12;
+}
+
+/* Inputs get a steadier, lighter sheen */
+.input-soft::after { opacity: 0.04; }

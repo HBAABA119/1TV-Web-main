@@ -6,6 +6,9 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { CartProvider } from "@/contexts/cart-context"
 import "./globals.css"
+import RouteLoader from "@/components/route-loader"
+import ParallaxProvider from "@/components/parallax-provider"
+import AnimateOnScroll from "@/components/animate-on-scroll"
 
 export const metadata: Metadata = {
   title: "One True Vision | Elite E-Sports Organization",
@@ -27,7 +30,9 @@ export default function RootLayout({
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} bg-gray-900 text-white`}>
         <CartProvider>
-          <Suspense fallback={null}>{children}</Suspense>
+          <ParallaxProvider />
+          <AnimateOnScroll />
+          <Suspense fallback={<RouteLoader />}>{children}</Suspense>
         </CartProvider>
         <Analytics />
       </body>

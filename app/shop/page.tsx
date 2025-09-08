@@ -64,8 +64,18 @@ const tweaks = [
 export default function ShopPage() {
   return (
     <PageLayout>
-      <section className="py-20 bg-black">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-20 bg-black relative overflow-hidden">
+        {/* Parallax background accent */}
+        <div
+          className="absolute inset-0 pointer-events-none parallax parallax-depth-2"
+          aria-hidden
+          style={{
+            background:
+              "radial-gradient(60vw 60vw at 50% -10%, rgba(255,255,255,0.06), rgba(0,0,0,0))",
+            maskImage: "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.2))",
+          }}
+        />
+        <div className="relative max-w-6xl mx-auto px-6">
           <div className="section-heading text-left mb-8">
             <div className="section-eyebrow">Shop</div>
             <h2 className="text-white">SHOP</h2>
@@ -78,7 +88,13 @@ export default function ShopPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-              <div key={product.id} className="card-soft p-4 group">
+              <a
+                key={product.id}
+                href="https://payhip.com/OneTrueVision"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-soft p-4 group hover:border-white transition-colors"
+              >
                 <div className="w-full aspect-[4/3] rounded-xl overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center mb-4">
                   <div className="skeleton w-full h-full" />
                 </div>
@@ -87,8 +103,9 @@ export default function ShopPage() {
                     <h3 className="text-white font-semibold tracking-wide">{product.name}</h3>
                     <p className="text-white/60 text-sm">{product.price}</p>
                   </div>
+                  <span className="text-xs text-white/60">Payhip →</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
