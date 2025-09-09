@@ -3,173 +3,159 @@ import type { Metadata } from "next"
 import ProductGrid from "@/components/product-grid"
 
 export const metadata: Metadata = {
-  title: "Shop | One True Vision",
+  title: "Shop",
   description:
-    "Browse and purchase official One True Vision merchandise including apparel, accessories, and gaming gear.",
+    "Discover official ITV merchandise including apparel, accessories, and gaming gear for true esports enthusiasts.",
 }
 
-const products = [
+const allProducts = [
   {
     id: 1,
-    name: "VOID Esports Premium Jersey",
-    price: 55.0,
-    image: "/store/jersey.png",
-    category: "Apparel",
-    description:
-      "Official Void team jersey with premium quality fabric and player customization options.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-premium-jersey",
+    name: "Zero Tweaks Performance Pack",
+    price: 29.99,
+    image: "/placeholder.jpg", // Set to placeholder image as requested
+    category: "Tweaks",
+    description: "Comprehensive PC optimization package to minimize input delay and enhance gaming performance.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 2,
-    name: "Void Hoodie",
-    price: 49.5,
-    image: "/store/hoodie.png",
+    name: "Gaming Performance T-Shirt",
+    price: 24.99,
+    image: "/store/tshirt2.png",
     category: "Apparel",
-    description: "Premium cotton blend hoodie with embroidered Void logo.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-unisex-hoodie",
+    description: "Premium cotton gaming t-shirt with Zero Tweaks logo.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 3,
-    name: "Void Hoodie (White Logo)",
-    price: 35.0,
-    image: "/store/hoodie2.png",
+    name: "Pro Gamer Hoodie",
+    price: 49.99,
+    image: "/store/hoodie.png",
     category: "Apparel",
-    description: "Premium cotton blend hoodie with embroidered whiteVoid logo.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-unisex-hoodie",
+    description: "Comfortable hoodie for gaming sessions with embroidered logo.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 4,
-    name: "Void Cobra Hoodie",
-    price: 40.99,
-    image: "/store/CobraHoodie.png",
-    category: "Apparel",
-    description:
-      "Premium cotton blend hoodie with embroidered Cobra branding with Void logo.",
-    link: "https://voidgamingshop.creator-spring.com/listing/void-cobra-custom-set?product=212&variation=5819",
+    name: "Network Optimization Package",
+    price: 19.99,
+    image: "/placeholder.jpg", // Set to placeholder image as requested
+    category: "Tweaks",
+    description: "Advanced network settings optimization for reduced latency in online gaming.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 5,
-    name: "VOID Esports Unisex T-Shirt",
-    price: 27.5,
-    image: "/store/tshirt1.png",
-    category: "Apparel",
-    description: "Structured cotton unisex classic VOID tee.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-unisex-t-shirt-1",
-  },
-  {
-    id: 6,
-    name: "VOID Esports Unisex T-Shirt",
-    price: 27.5,
-    image: "/store/tshirt2.png",
-    category: "Apparel",
-    description: "Structured cotton unisex classic VOID tee.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-unisex-t-shirt",
+    name: "Gaming Mouse Pad",
+    price: 15.99,
+    image: "/store/mousepad.png",
+    category: "Peripherals",
+    description: "Professional gaming mouse pad with optimized surface for precision tracking.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 7,
-    name: "VOID Esports T-Shirt (White Logo)",
-    price: 20.9,
-    image: "/store/tshirt3.png",
-    category: "Apparel",
-    description: "Structured cotton unisex classic VOID tee.",
-    link: "https://voidgamingshop.creator-spring.com/listing/white-logo-tshirts?product=2&variation=2397",
+    name: "System Tweaking Guide",
+    price: 14.99,
+    image: "/placeholder.jpg", // Set to placeholder image as requested
+    category: "Tweaks",
+    description: "Comprehensive guide for optimizing Windows for gaming performance.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 8,
-    name: "VOID Cobra T-Shirt (White Logo)",
-    price: 24.0,
-    image: "/store/CobraTSHIRT.png",
-    category: "Apparel",
-    description: "Structured cotton unisex classic VOID Cobra tee.",
-    link: "https://voidgamingshop.creator-spring.com/listing/void-cobra-custom-set?product=2&variation=2397",
+    name: "Gaming Wristband",
+    price: 9.99,
+    image: "/store/sleeve.png",
+    category: "Accessories",
+    description: "Comfortable wristband for extended gaming sessions.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 9,
-    name: "VOID Esports Unisex Tank Top",
-    price: 27.5,
-    image: "/store/tanktop.png",
-    category: "Apparel",
-    description:
-      "A classic, staple tank top. A timeless classic intended for anyone looking for great quality and softness. ",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-unisex-tank-top",
+    name: "Premium Gaming Keyboard",
+    price: 89.99,
+    image: "/store/jersey.png", // Reusing existing image as placeholder
+    category: "Peripherals",
+    description: "Mechanical gaming keyboard with customizable RGB lighting.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 10,
-    name: "VOID Esports Unisex Fleece Sweatpants",
-    price: 49.5,
-    image: "/store/sweatpants.png",
-    category: "Apparel",
-    description:
-      "Well made and lined with fleece. Comfortable sweatpants with sleek Void design.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-unisex-fleece-sweatpants",
+    name: "Gaming Stickers Pack",
+    price: 7.99,
+    image: "/store/sticker2.png",
+    category: "Accessories",
+    description: "Set of high-quality stickers featuring gaming-themed designs.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 11,
-    name: "VOID Esports Unisex Dad Hat",
-    price: 35.0,
-    image: "/store/hat.png",
-    category: "Accessories",
-    description:
-      "Dad hats arent just for dads. This ones got a low profile with an adjustable strap and curved visor.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-unisex-dad-hat",
+    name: "FPS Boost Package",
+    price: 24.99,
+    image: "/placeholder.jpg", // Set to placeholder image as requested
+    category: "Tweaks",
+    description: "Specialized tweaks to maximize frames per second in competitive games.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 12,
-    name: "VOID Esports Compression Arm Sleeve",
-    price: 22.0,
-    image: "/store/sleeve.png",
-    category: "Accessories",
-    description:
-      "This arm sleeve will make sure you play at your best with no friction!.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-compression-arm-sleeve",
+    name: "Gaming Mouse",
+    price: 59.99,
+    image: "/store/sweatpants.png", // Reusing existing image as placeholder
+    category: "Peripherals",
+    description: "High-precision gaming mouse with adjustable DPI and programmable buttons.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 13,
-    name: "VOID Esports Mousepad",
-    price: 25.0,
-    image: "/store/mousepad.png",
-    category: "Perhipherals",
-    description:
-      "This mousepad will make sure you play at your best with no friction!.",
-    link: "https://voidgamingshop.creator-spring.com/listing/black-mouse-pad-mat?product=1959&variation=105517",
+    name: "Gaming Backpack",
+    price: 39.99,
+    image: "/store/tanktop.png", // Reusing existing image as placeholder
+    category: "Accessories",
+    description: "Durable backpack designed for transporting gaming gear safely.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 14,
-    name: "VOID Esports Premium Flag",
-    price: 45.0,
-    image: "/store/flag.png",
-    category: "Accessories",
-    description: "Brighten up your space by adding this unique flag to your wall.",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-premium-flag",
+    name: "Performance Sweatshirt",
+    price: 44.99,
+    image: "/store/hoodie2.png",
+    category: "Apparel",
+    description: "Comfortable sweatshirt with Zero Tweaks logo for gaming enthusiasts.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 15,
-    name: "VOID Esports Bubble Free Stickers",
-    price: 4.0,
-    image: "/store/sticker.png",
-    category: "Accessories",
-    description: "Brand all your items with the VOID Esports Sticker!",
-    link: "https://evo9x.gg/collections/void-esports/products/void-esports-bubble-free-stickers",
+    name: "Audio Optimization Package",
+    price: 17.99,
+    image: "/placeholder.jpg", // Set to placeholder image as requested
+    category: "Tweaks",
+    description: "Advanced audio settings for competitive gaming advantage.",
+    link: "https://payhip.com/ZeroTweakss",
   },
   {
     id: 16,
-    name: "VOID Esports Die Cut Stickers",
-    price: 6.0,
-    image: "/store/sticker2.png",
-    category: "Accessories",
-    description: "Brand all your items with the VOID Esports Sticker!",
-    link: "https://voidgamingshop.creator-spring.com/listing/void-die-sticker?product=794&variation=103544",
+    name: "Gaming Headset",
+    price: 79.99,
+    image: "/store/CobraTSHIRT.png", // Reusing existing image as placeholder
+    category: "Peripherals",
+    description: "High-quality gaming headset with surround sound and noise-canceling microphone.",
+    link: "https://payhip.com/ZeroTweakss",
   },
 ]
+
+const products = allProducts.filter(product => product.category === "Tweaks");
 
 export default function ShopPage() {
   return (
     <PageLayout>
       <section className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold gradient-text">SHOP VOID</h1>
+          <h1 className="text-4xl font-bold gradient-text">SHOP</h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-            Discover official VOID merchandise including apparel, accessories, and gaming gear for true esports enthusiasts.
+            Discover official ITV merchandise including apparel, accessories, and gaming gear for true esports enthusiasts.
           </p>
         </div>
       </section>
