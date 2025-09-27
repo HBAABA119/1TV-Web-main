@@ -3,6 +3,7 @@ import SocialMedia from "@/components/social-media"
 import PageLayout from "@/components/page-layout"
 import AnimatedPageWrapper, { AnimatedSection } from "@/components/animated-page-wrapper"
 import GlassmorphicCard from "@/components/glassmorphic-card"
+import { motion } from "framer-motion"
 
 export default function HomePage() {
   return (
@@ -28,16 +29,50 @@ export default function HomePage() {
                   <div>
                     <p className="section-eyebrow">Team</p>
                     <h3 className="text-2xl font-semibold tracking-wide text-white">FORTNITE</h3>
+                    <p className="text-white/60 mt-2">Competitive Division</p>
                   </div>
-                  <div className="w-40 h-24 rounded-xl overflow-hidden border border-gray-800/60 bg-black/60">
-                    <div className="skeleton w-full h-full" />
+                  <div className="w-40 h-24 rounded-xl overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center">
+                    <span className="text-white/30 text-4xl">FN</span>
                   </div>
                 </GlassmorphicCard>
               </AnimatedSection>
               
               <AnimatedSection delay={0.4}>
-                <GlassmorphicCard className="p-0 overflow-hidden">
-                  <div className="skeleton h-40 w-full" />
+                <GlassmorphicCard className="p-6 flex items-center justify-between">
+                  <div>
+                    <p className="section-eyebrow">Team</p>
+                    <h3 className="text-2xl font-semibold tracking-wide text-white">VALORANT</h3>
+                    <p className="text-white/60 mt-2">Pro Division</p>
+                  </div>
+                  <div className="w-40 h-24 rounded-xl overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center">
+                    <span className="text-white/30 text-4xl">VAL</span>
+                  </div>
+                </GlassmorphicCard>
+              </AnimatedSection>
+              
+              <AnimatedSection delay={0.6}>
+                <GlassmorphicCard className="p-6 flex items-center justify-between">
+                  <div>
+                    <p className="section-eyebrow">Team</p>
+                    <h3 className="text-2xl font-semibold tracking-wide text-white">APEX LEGENDS</h3>
+                    <p className="text-white/60 mt-2">Championship Division</p>
+                  </div>
+                  <div className="w-40 h-24 rounded-xl overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center">
+                    <span className="text-white/30 text-4xl">AL</span>
+                  </div>
+                </GlassmorphicCard>
+              </AnimatedSection>
+              
+              <AnimatedSection delay={0.8}>
+                <GlassmorphicCard className="p-6 flex items-center justify-between">
+                  <div>
+                    <p className="section-eyebrow">Team</p>
+                    <h3 className="text-2xl font-semibold tracking-wide text-white">CS2</h3>
+                    <p className="text-white/60 mt-2">Elite Division</p>
+                  </div>
+                  <div className="w-40 h-24 rounded-xl overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center">
+                    <span className="text-white/30 text-4xl">CS</span>
+                  </div>
                 </GlassmorphicCard>
               </AnimatedSection>
             </div>
@@ -74,20 +109,51 @@ export default function HomePage() {
             <div className="space-y-8">
               <AnimatedSection delay={0.2}>
                 <GlassmorphicCard className="p-4 block hover:border-white transition-colors">
-                  <a href="/" className="flex gap-4 items-center">
-                    <div className="w-32 h-20 rounded-lg overflow-hidden border border-gray-800/60 bg-black/60">
-                      <div className="skeleton w-full h-full" />
+                  <a href="/news/1tv-website-launch" className="flex gap-4 items-center">
+                    <div className="w-32 h-20 rounded-lg overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center">
+                      <span className="text-white/30 text-xl">1TV</span>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-white font-semibold tracking-wide">1TV official website published</h3>
-                      <p className="text-white/60 text-sm group-hover:text-cyan-400 transition-colors">Read more →</p>
+                      <h3 className="text-white font-semibold tracking-wide">1TV official website launched</h3>
+                      <p className="text-white/60 text-sm mt-1">September 27, 2025</p>
+                      <p className="text-white/80 text-sm mt-2 group-hover:text-cyan-400 transition-colors">Official launch of our new esports organization website with team profiles and news.</p>
+                    </div>
+                  </a>
+                </GlassmorphicCard>
+              </AnimatedSection>
+              
+              <AnimatedSection delay={0.4}>
+                <GlassmorphicCard className="p-4 block hover:border-white transition-colors">
+                  <a href="/news/fortnite-championship" className="flex gap-4 items-center">
+                    <div className="w-32 h-20 rounded-lg overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center">
+                      <span className="text-white/30 text-xl">FN</span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-white font-semibold tracking-wide">Fortnite Championship Victory</h3>
+                      <p className="text-white/60 text-sm mt-1">September 20, 2025</p>
+                      <p className="text-white/80 text-sm mt-2 group-hover:text-cyan-400 transition-colors">Our Fortnite team secures first place in the regional championship tournament.</p>
+                    </div>
+                  </a>
+                </GlassmorphicCard>
+              </AnimatedSection>
+              
+              <AnimatedSection delay={0.6}>
+                <GlassmorphicCard className="p-4 block hover:border-white transition-colors">
+                  <a href="/news/new-player-signing" className="flex gap-4 items-center">
+                    <div className="w-32 h-20 rounded-lg overflow-hidden border border-gray-800/60 bg-black/60 flex items-center justify-center">
+                      <span className="text-white/30 text-xl">VAL</span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-white font-semibold tracking-wide">New Valorant Player Signing</h3>
+                      <p className="text-white/60 text-sm mt-1">September 15, 2025</p>
+                      <p className="text-white/80 text-sm mt-2 group-hover:text-cyan-400 transition-colors">Welcome our newest addition to the Valorant roster, professional player ShadowX.</p>
                     </div>
                   </a>
                 </GlassmorphicCard>
               </AnimatedSection>
             </div>
             
-            <AnimatedSection delay={0.4} className="mt-8">
+            <AnimatedSection delay={0.8} className="mt-8">
               <a href="/news" className="btn-secondary inline-block">View All News</a>
             </AnimatedSection>
           </div>

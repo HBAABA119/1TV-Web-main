@@ -15,39 +15,57 @@ export default function Footer() {
             <p className="text-white/60 text-sm leading-relaxed">
               Elite esports organization. Precision, discipline, and a single vision to win.
             </p>
+            <div className="flex gap-4 mt-4">
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Discord" className="text-white/60 hover:text-cyan-400 transition-colors duration-300">
+                <i className="fab fa-discord text-xl"></i>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white/60 hover:text-cyan-400 transition-colors duration-300">
+                <i className="fab fa-tiktok text-xl"></i>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/60 hover:text-cyan-400 transition-colors duration-300">
+                <i className="fab fa-youtube text-xl"></i>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-white/60 hover:text-cyan-400 transition-colors duration-300">
+                <i className="fab fa-twitter text-xl"></i>
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <div className="section-eyebrow mb-3">Quick Links</div>
-            <ul className="space-y-2 text-white/80">
-              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/teams" className="hover:text-white transition-colors">Teams</Link></li>
-              <li><Link href="/live-stream" className="hover:text-white transition-colors">Live Stream</Link></li>
-              <li><Link href="/news" className="hover:text-white transition-colors">News</Link></li>
-              <li><Link href="/placements" className="hover:text-white transition-colors">Placements</Link></li>
-              <li><Link href="/schedule" className="hover:text-white transition-colors">Schedule</Link></li>
+            <h3 className="section-eyebrow mb-3 text-cyan-400">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link href="/" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">Home</Link></li>
+              <li><Link href="/teams" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">Teams</Link></li>
+              <li><Link href="/live-stream" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">Live Stream</Link></li>
+              <li><Link href="/news" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">News</Link></li>
+              <li><Link href="/placements" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">Placements</Link></li>
+              <li><Link href="/schedule" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">Schedule</Link></li>
             </ul>
           </div>
 
           {/* Shop & Info */}
           <div>
-            <div className="section-eyebrow mb-3">Explore</div>
-            <ul className="space-y-2 text-white/80">
-              <li><Link href="/shop" className="hover:text-white transition-colors">Shop</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+            <h3 className="section-eyebrow mb-3 text-cyan-400">Explore</h3>
+            <ul className="space-y-2">
+              <li><Link href="/shop" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">Shop</Link></li>
+              <li><Link href="/about" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">About</Link></li>
+              <li><Link href="/contact" className="text-white/80 hover:text-cyan-400 transition-colors duration-300">Contact</Link></li>
             </ul>
           </div>
 
-          {/* Socials */}
+          {/* Contact Info */}
           <div>
-            <div className="section-eyebrow mb-3">Social</div>
+            <h3 className="section-eyebrow mb-3 text-cyan-400">Contact</h3>
             <ul className="space-y-2 text-white/80">
-              <li><a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">X (Twitter)</a></li>
-              <li><a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
-              <li><a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">YouTube</a></li>
-              <li><a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Discord</a></li>
+              <li className="flex items-start gap-2">
+                <i className="fas fa-envelope mt-1 text-cyan-400"></i>
+                <span>contact@1tv.gg</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <i className="fas fa-map-marker-alt mt-1 text-cyan-400"></i>
+                <span>Esports Arena, Digital World</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -56,7 +74,10 @@ export default function Footer() {
       <div className="border-t border-gray-900">
         <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/60 text-sm">&copy; 2025 One True Vision. All rights reserved.</p>
-          <div className="text-white/60 text-xs">Built with passion for esports.</div>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="text-white/60 text-sm hover:text-cyan-400 transition-colors duration-300">Privacy Policy</Link>
+            <Link href="/terms" className="text-white/60 text-sm hover:text-cyan-400 transition-colors duration-300">Terms of Service</Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -3,35 +3,36 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useCallback } from "react"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 
 export default function EnhancedHeader() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  const isActive = (path: string) => pathname === path
+  const isActive = useCallback((path: string) => pathname === path, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    // Use passive event listener for better performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const headerVariants = {
+  const headerVariants: Variants = {
     initial: { y: -100, opacity: 0 },
     animate: { 
       y: 0, 
       opacity: 1,
-      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+      transition: { duration: 0.6, ease: "easeOut" }
     }
   }
 
-  const linkVariants = {
+  const linkVariants: Variants = {
     initial: { opacity: 0, y: -20 },
     animate: { 
       opacity: 1, 
@@ -40,13 +41,13 @@ export default function EnhancedHeader() {
     }
   }
 
-  const mobileMenuVariants = {
+  const mobileMenuVariants: Variants = {
     closed: {
       opacity: 0,
       height: 0,
       transition: {
         duration: 0.3,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: "easeOut"
       }
     },
     open: {
@@ -54,16 +55,28 @@ export default function EnhancedHeader() {
       height: "auto",
       transition: {
         duration: 0.4,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        staggerChildren: 0.05
+        ease: "easeOut"
       }
     }
   }
 
-  const mobileItemVariants = {
+  const mobileItemVariants: Variants = {
     closed: { opacity: 0, x: -20 },
     open: { opacity: 1, x: 0 }
   }
+
+  // Navigation items as a constant to prevent re-creation on each render
+  const navItems = [
+    { href: "/", label: "HOME" },
+    { href: "/teams", label: "TEAMS" },
+    { href: "/live-stream", label: "LIVE STREAM" },
+    { href: "/news", label: "NEWS" },
+    { href: "/placements", label: "PLACEMENTS" },
+    { href: "/schedule", label: "SCHEDULE" },
+    { href: "/shop", label: "SHOP" },
+    { href: "/about", label: "ABOUT" },
+    { href: "/contact", label: "CONTACT US" }
+  ]
 
   return (
     <motion.header
@@ -75,6 +88,8 @@ export default function EnhancedHeader() {
           ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]' 
           : 'bg-transparent'
       }`}
+      role="banner"
+      aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -82,37 +97,29 @@ export default function EnhancedHeader() {
             className="logo"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <Link href="/" className="block">
+            <Link href="/" className="block" aria-label="One True Vision homepage">
               <Image
-                src="/images/1TV_LOGO.png"
+                src="/images/new-logo.png"
                 alt="One True Vision"
                 width={100}
                 height={50}
                 className="w-auto h-auto max-w-[100px] hover:opacity-80 transition-opacity duration-300"
+                priority
               />
             </Link>
           </motion.div>
 
-          <nav className="hidden lg:block">
-            <ul className="flex items-center gap-8 list-none p-0 m-0">
-              {[
-                { href: "/", label: "HOME" },
-                { href: "/teams", label: "TEAMS" },
-                { href: "/live-stream", label: "LIVE STREAM" },
-                { href: "/news", label: "NEWS" },
-                { href: "/placements", label: "PLACEMENTS" },
-                { href: "/schedule", label: "SCHEDULE" },
-                { href: "/shop", label: "SHOP" },
-                { href: "/about", label: "ABOUT" },
-                { href: "/contact", label: "CONTACT US" }
-              ].map((item, index) => (
+          <nav className="hidden lg:block" role="navigation" aria-label="Main menu">
+            <ul className="flex items-center gap-6 list-none p-0 m-0">
+              {navItems.map((item, index) => (
                 <motion.li
                   key={item.href}
                   variants={linkVariants}
                   initial="initial"
                   animate="animate"
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.05 }}
                 >
                   <Link 
                     href={item.href} 
@@ -121,6 +128,7 @@ export default function EnhancedHeader() {
                       transition-all duration-300 hover:text-cyan-400 group
                       ${isActive(item.href) ? "text-cyan-400" : ""}
                     `}
+                    aria-current={isActive(item.href) ? "page" : undefined}
                   >
                     {item.label}
                     <span className={`
@@ -138,22 +146,23 @@ export default function EnhancedHeader() {
           <motion.button
             whileTap={{ scale: 0.95 }}
             type="button"
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 border border-white/20 rounded-lg hover:border-white/40 transition-colors duration-300"
+            className="lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 border border-white/20 rounded-lg hover:border-white/40 transition-colors duration-300 group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
           >
             <motion.span
               animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className="block w-5 h-0.5 bg-white transition-all duration-300"
+              className="block w-5 h-0.5 bg-white transition-all duration-300 group-hover:bg-cyan-400"
             />
             <motion.span
               animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-5 h-0.5 bg-white transition-all duration-300"
+              className="block w-5 h-0.5 bg-white transition-all duration-300 group-hover:bg-cyan-400"
             />
             <motion.span
               animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className="block w-5 h-0.5 bg-white transition-all duration-300"
+              className="block w-5 h-0.5 bg-white transition-all duration-300 group-hover:bg-cyan-400"
             />
           </motion.button>
         </div>
@@ -166,29 +175,27 @@ export default function EnhancedHeader() {
               initial="closed"
               animate="open"
               exit="closed"
+              id="mobile-menu"
               className="lg:hidden mt-4 pt-4 border-t border-white/10 overflow-hidden"
+              role="navigation"
+              aria-label="Mobile menu"
             >
               <ul className="flex flex-col gap-4 list-none p-0 m-0">
-                {[
-                  { href: "/", label: "HOME" },
-                  { href: "/teams", label: "TEAMS" },
-                  { href: "/live-stream", label: "LIVE STREAM" },
-                  { href: "/news", label: "NEWS" },
-                  { href: "/placements", label: "PLACEMENTS" },
-                  { href: "/schedule", label: "SCHEDULE" },
-                  { href: "/shop", label: "SHOP" },
-                  { href: "/about", label: "ABOUT" },
-                  { href: "/contact", label: "CONTACT US" }
-                ].map((item) => (
-                  <motion.li key={item.href} variants={mobileItemVariants}>
+                {navItems.map((item) => (
+                  <motion.li 
+                    key={item.href} 
+                    variants={mobileItemVariants}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
                     <Link 
                       href={item.href} 
                       onClick={() => setMenuOpen(false)}
                       className={`
-                        block text-white font-medium uppercase tracking-wider text-sm py-2
-                        transition-all duration-300 hover:text-cyan-400 hover:translate-x-2
-                        ${isActive(item.href) ? "text-cyan-400" : ""}
+                        block text-white font-medium uppercase tracking-wider text-sm py-3 px-4 rounded-lg
+                        transition-all duration-300 hover:text-cyan-400 hover:bg-white/5 hover:translate-x-2
+                        ${isActive(item.href) ? "text-cyan-400 bg-white/5" : ""}
                       `}
+                      aria-current={isActive(item.href) ? "page" : undefined}
                     >
                       {item.label}
                     </Link>
